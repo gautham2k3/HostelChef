@@ -10,9 +10,9 @@
 body {
   margin: 40px 0;
   font-family: 'Raleway';
-  background-image: url('@/assets/images/HC_Background.jpeg'); /* Add your image path here */
+  background-image: url('@/assets/images/HC_Background_02.png'); /* Add your image path here */
   background-size: contain; /* Cover the entire viewport */
-  background-repeat: repeat; /* Prevent repeating the image */
+  background-repeat:initial; /* Prevent repeating the image */
   background-position: center center; /* Center the image */
   background-blend-mode: light;
 
@@ -20,6 +20,30 @@ body {
   font-weight: 500;
   background-color: #bcaaa4;
   -webkit-font-smoothing: antialiased;
+}
+
+.navbar {
+  display: flex;
+  margin-left: auto; 
+}
+
+.navbar a {
+  font-size: 18px;
+  font-weight: 400;
+  font-family: monospace;
+  margin-left: 20px;
+  text-decoration: none;
+  color: #ffffff;
+  padding: 10px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  border-radius: 4px;
+}
+
+.navbar a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffdab9;
 }
 
 .blur-container {
@@ -38,17 +62,26 @@ body {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
   }
-}
+}*/
 
-@media (min-width: 1024px) {
-  body {
+/* @media (min-width: 724px) { 
+
+  .navbar {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar a {
+    margin: 10px 0;
+    padding: 10px 20px;
+  }
+
+  .navbar-open {
     display: flex;
-    place-items: center;
   }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+  .navbar-open .logo-image {
+    display: none;
   }
-} */
+}  */
