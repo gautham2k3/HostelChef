@@ -10,6 +10,7 @@
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/recipes">Recipes</RouterLink>
         <RouterLink to="/contact">Contact</RouterLink>
+        <RouterLink to="/test">Test</RouterLink>
       </nav>
     </header>
     <div class="container">
@@ -47,6 +48,7 @@
 
 <script setup>
   import { ref } from 'vue'
+import { RouterLink } from 'vue-router';
   const menuOpen = ref(false)
   const toggleMenu = () => {
     menuOpen.value = !menuOpen.value
