@@ -7,7 +7,6 @@
       <nav :class="['navbar', { 'navbar-open': menuOpen }]">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/recipes">Recipes</RouterLink>
-        <a href="#">Devices</a>
         <router-link to="/contact">Contact</router-link> 
       </nav>
       <button class="menu-toggle" @click="toggleMenu">☰</button>
@@ -16,7 +15,7 @@
       <h1 class="title">Select the Cooktop</h1>
       <div class="container">
         <Card
-          data-image="assets/images/cooktop(3).jpeg"
+          data-image="https://i.postimg.cc/9fszcqkj/cooktop-3.jpg"
         >
           <template v-slot:header>
             <h1>Kettle</h1>
@@ -25,7 +24,7 @@
             <p>Plugs into an outlet and uses electricity to power an integrated heating element.</p>
           </template>
         </Card>
-        <Card data-image="@src\assets\images\cooktop (1).jpeg">
+        <Card data-image="https://i.postimg.cc/YSvhcxb3/cooktop-2.jpg">
           <template v-slot:header>
             <h1>Induction Cooktop</h1>
           </template>
@@ -34,7 +33,7 @@
           </template>
         </Card>
         <Card
-          data-image="assets/images/cooktop(3).jpeg"
+          data-image="https://i.postimg.cc/YCqvR7FT/cooktop-1.jpg"
         >
           <template v-slot:header>
             <h1>Stove</h1>
@@ -83,7 +82,8 @@ const toggleMenu = () => {
 </script>
 
 <style scoped>
-/* General styles */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
 body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
@@ -144,7 +144,7 @@ body {
 }
 
 .title {
-  font-family: 'Trebuchet MS', Arial, sans-serif;
+  font-family: 'Caveat', cursive;
   font-size: 40px;
   font-weight: 700;
   text-transform: uppercase;

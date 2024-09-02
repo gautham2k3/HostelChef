@@ -5,9 +5,9 @@
          <img src="@/assets/logos/android-chrome-512x512.png" alt="Logo" class="logo-image" />
        </a>
        <div class="search">
-         <form class="search-form">
-           <input type="text" name="search" class="search-input" placeholder="Search for Recipes" autofocus>
-           <button type="submit" class="search-submit" disabled><i class="bx bx-search"></i></button>
+         <form class="search-form" @submit.prevent="handleSearch">
+           <input type="text" name="search" v-model="searchQuery" class="search-input" placeholder="Search for Recipes" autofocus>
+           <button type="submit" class="search-submit"><i class="bx bx-search"></i></button>
          </form>
        </div>
        <div ref="menu" class="menu" :class="{ 'is-active': isMenuOpen }">
@@ -21,16 +21,82 @@
            <li class="menu-item">
              <RouterLink to="/contact" class="menu-link" @click="closeMenu">Contact</RouterLink>
            </li>
+           <li class="menu-item">
+             <RouterLink to="/recipes/:id" class="menu-link"  @click="closeMenu">About</RouterLink>
+             </li>
          </ul>
        </div>
        <button ref="burger" class="menu-toggle" @click="toggleMenu">☰</button>
      </nav>
    </header>
+   <body>
+      <ol class="filters">
+         <li>
+            <label for="Fast">Fast</label>
+         </li>
+         <li>
+            <label for="Medium">Medium</label>
+         </li>
+      </ol>
+      <div v-if="recipes.length" class="scroll-container">
+      <RecipeCard
+        v-for="recipe in recipes"
+        :key="recipe._id"
+        :image="recipe.imageUrl"
+        :subtitle="'Tasty'"
+        :title="recipe.name"
+        :time="recipe.time"
+        :servings="2"  
+        :calories="recipe.difficulty.toUpperCase()"
+        :description="recipe.description"
+        :recipeID="recipe._id"
+      />
+    </div>
+    <div v-else class="elseLoder">
+      <div class="loader"></div> 
+      <p>Reload after a 5 sec...</p>
+      <p>Not Working! Server Down💀</p>
+    </div>
+   </body>
  </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
+import RecipeCard from '@/components/recipeCards.vue';
+import { baseUrl } from '@/config';
+import RecipeDetail from '@/views/RecipeDetail.vue';
+
+const recipes = ref([]);
+const latestRecipe =ref([]);
+const searchQuery = ref(''); 
+
+// Fetch the latest recipes when the component is mounted
+onMounted(async () => {
+  try {
+    const response = await fetch(`${baseUrl}/recipe/latest`);
+    const data = await response.json();
+    recipes.value = data;
+    latestRecipe.value = data;
+  } catch (error) {
+    console.error('Error fetching recipes:', error);
+  }
+});
+
+const handleSearch = async () => {
+   if (!searchQuery.value.trim()) {
+      recipes.value = latestRecipe.value;
+       return;
+   }
+   try {
+       const response = await fetch(`${baseUrl}/recipe/search/${encodeURIComponent(searchQuery.value)}`);
+       const data = await response.json();
+       recipes.value = data; 
+    } catch (error) {
+       console.error('Error Searching recipes:', error);
+       recipes.value = [];
+   }
+};
 
 // State to manage menu open/close status
 const isMenuOpen = ref(false);
@@ -44,6 +110,7 @@ const toggleMenu = () => {
 const closeMenu = () => {
   isMenuOpen.value = false;
 };
+
 </script>
 
 
@@ -96,6 +163,16 @@ html {
    scroll-behavior: smooth;
    height: -webkit-fill-available;
 }
+.scroll-container {
+   margin-top:5%;
+   max-height: 500px;
+   overflow-y:auto;
+   display: flex;
+   flex-wrap: wrap;
+   gap: 16px;
+   scrollbar-width:auto;
+   scrollbar-color: #ff6f61 #f4f5f5;
+}
 
 body {
    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -147,6 +224,33 @@ video {
    margin-bottom: 1rem;
 }
 
+.elseLoder {
+   display: flex;
+   flex-direction: column;
+   align-items:center;
+   justify-content: center;
+   margin-bottom: auto;
+   margin-top: 100px;
+}
+
+p {
+   font-size: large;
+   font-weight: 400;
+   color: #ffff;
+   animation: fadeIn 1s ease-in-out;
+}
+
+.loader {
+   display: inline-block;
+   width: 2rem;
+   height: 2rem;
+   border: 0.25rem solid #f3f3f3;
+   border-top: 0.25rem solid #ff6f61;
+   border-radius: 50%;
+   animation: spin 1s linear infinite;
+}
+
+
 .btn {
    display: inline-block;
    font-family: inherit;
@@ -177,7 +281,6 @@ video {
       box-shadow: var(--shadow-medium);
    }
 }
-
 // Headers
 .header {
    position: fixed;
@@ -250,6 +353,7 @@ video {
       padding-inline: 1.5rem;
       border-radius: 3rem;
       background: var(--color-white-200, #f4f5f5);
+      box-shadow: var(--shadow-small);
    }
 
    &-input {
@@ -289,6 +393,36 @@ video {
       }
    }
 }
+
+.filters {
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 5px;
+  align-items: center;
+}
+
+.filters * {
+  display: inline-block;
+   margin: 0 0.1rem;
+}
+
+.filters label {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.25rem;
+  border-radius: 2rem;
+  background-color: #ffffff;
+  color: #080a0c;
+  min-width: 50px;
+  line-height: normal;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.filters label:hover {
+  background: #f4f5f5;
+  color: #080a0c;
+}
+
 
 .menu {
   position: fixed;
@@ -409,3 +543,4 @@ video {
    
   }
 </style>
+

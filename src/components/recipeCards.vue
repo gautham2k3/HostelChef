@@ -10,24 +10,26 @@
       </div>
       <div class="recipe-overview">
         <div class="recipe-time">
-          <i class="icon-time"></i>{{ time }}
+          <img src="@/assets/icons/time.png" alt="Time Icon" class="icon" />{{ time }}
         </div>
         <div class="recipe-serve">
-          <i class="icon-serve"></i>{{ servings }}
+          <img src="@/assets/icons/recipe.png" alt="Serving Icon" class="icon" />{{ servings }}
         </div>
         <div class="recipe-calories">
-          <i class="icon-calories"></i>{{ calories }}
+          <img src="@/assets/icons/difficulty.png" alt="Calories Icon" class="icon" />{{ calories }}
         </div>
       </div>
       <div class="recipe-about">
         <p>{{ description }}</p>
       </div>
     </div>
-    <button @click="openRecipe" class="read-more-btn">→</button>
+    <button @click="openRecipe" class="read-more-btn">→
+    </button>
   </div>
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
 export default {
   props: {
     image: {
@@ -62,10 +64,15 @@ export default {
       type: String,
       required: true,
     },
+    recipeID: {
+      type: String,
+      required: true,
+    }
   },
   methods: {
     openRecipe() {
-      window.open(this.url, "_blank");
+      console.log('Navigating to recipe detail page with ID:', this.recipeID);
+      this.$router.push(`/recipe/${this.recipeID}`);
     },
   },
 };
@@ -169,17 +176,25 @@ export default {
   margin: 0;
 }
 
-.recipe-card .icon-time::before {
-  content: '⏰'; /* Time icon */
+/* .recipe-card .icon-time::before {
+  content: '⏰'; 
 }
 
 .recipe-card .icon-serve::before {
-  content: '🍽️'; /* Serving icon */
+  content: '🍽️'; 
 }
 
 .recipe-card .icon-calories::before {
-  content: '🔥'; /* Calories icon */
+  content: '🔥'; 
+} */
+
+.icon {
+  width: 20px; /* Adjust size as needed */
+  height: 20px;
+  margin-right: 6px;
+  vertical-align: middle; /* Aligns the icon with the text */
 }
+
 
 .read-more-btn {
   position: absolute;

@@ -1,71 +1,51 @@
 <template>
   <div>
     <h2>Recipe Details</h2>
-    <div v-if="recipe" class="scroll-container">
+    <div v-if="recipes.length" class="scroll-container">
       <RecipeCard
-        :key="recipe._id1"
+        v-for="recipe in recipes"
+        :key="recipe._id"
         :image="recipe.imageUrl"
-        :subtitle="recipe.difficulty"
+        :subtitle="'Tasty'"
         :title="recipe.name"
         :time="recipe.time"
-        :servings="2"
-        :calories="280"
+        :servings="2"  
+        :calories="256"
         :description="recipe.description"
       />
-      <div v-for="ingredient in recipe.ingredients" :key="ingredient._id">
-        <RecipeCard
-          :image="'ingredient.imageUrl'"
-          :subtitle="'HHHhhh'"
-          :title="'jjjjj'"
-          :time="'ingredient.time'"
-          :servings="2"
-          :calories="280"
-          :description="'ingredient.description'"
-        />
-      </div>
     </div>
     <div v-else>
-      <p>Loading recipe...</p>
+      <p>Loading recipes...</p>
     </div>
   </div>
 </template>
 
 <script>
-import RecipeCard from '@/components/recipeCards.vue';
 import { ref, onMounted } from 'vue';
-import { baseUrl } from '@/config';
+import RecipeCard from '@/components/recipeCards.vue';
 
 export default {
   components: {
-    RecipeCard,
+    RecipeCard
   },
   setup() {
-    const recipe = ref(null);
-    const recipeId = "66c43932e13e5517b0f8d78d"; // The ObjectId string from your MongoDB
+    const recipes = ref([]); // Initialize with an empty array
 
-    const fetchRecipeById = async (id) => {
+    // Fetch the latest recipes when the component is mounted
+    onMounted(async () => {
       try {
-        // Fetch the recipe by ID
-        const response = await fetch(`${baseUrl}/recipes/${id}`);
-        if (!response.ok) {
-          throw new Error('Recipe not found');
-        }
-        let rec= await response;
-        print(rec);
-        recipe.value = await response.json(); // Store the fetched recipe data
+        const response = await fetch('http://localhost:5050/recipe/latest');
+        const data = await response.json();
+        recipes.value = data; // Assign the fetched data to recipes
       } catch (error) {
-        console.error('Failed to fetch recipe by ID:', error);
+        console.error('Error fetching recipes:', error);
       }
-    };
-
-    onMounted(() => {
-      fetchRecipeById(recipeId); // Fetch the specific recipe when component mounts
     });
 
     return {
-      recipe,
+      recipes
     };
-  },
+  }
 };
 </script>
 

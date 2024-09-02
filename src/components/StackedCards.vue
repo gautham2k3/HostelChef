@@ -7,7 +7,9 @@
           Discover simple, delicious recipes and tips to make cooking in your dorm a breeze. From
           quick snacks to full meals, we've got you covered.
           <br />
-          <button>Explore Recipes</button>
+            <router-link to="/recipes">
+            <button>Explore Recipes</button>
+            </router-link>
         </div>
       </div>
       <div class="right">
@@ -43,7 +45,7 @@ onMounted(() => {
         card.style.transform = `translate(-50%, -120vh) rotate(-48deg)`
       } else {
         card.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`
-        angle = angle - 10
+        angle = angle - 7
       }
     })
   }
