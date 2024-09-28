@@ -14,7 +14,7 @@
     <div class="app-container">
       <h1 class="title">Select the Cooktop</h1>
       <div class="container">
-        <Card
+        <Card @click="categoryClick('kettle')"
           data-image="https://i.postimg.cc/9fszcqkj/cooktop-3.jpg"
         >
           <template v-slot:header>
@@ -24,7 +24,7 @@
             <p>Plugs into an outlet and uses electricity to power an integrated heating element.</p>
           </template>
         </Card>
-        <Card data-image="https://i.postimg.cc/YSvhcxb3/cooktop-2.jpg">
+        <Card @click="categoryClick('Induction')" data-image="https://i.postimg.cc/YSvhcxb3/cooktop-2.jpg">
           <template v-slot:header>
             <h1>Induction Cooktop</h1>
           </template>
@@ -32,7 +32,7 @@
             <p>A type of electric cooktop that uses electromagnetism to heat cookware.</p>
           </template>
         </Card>
-        <Card
+        <Card @click="categoryClick('Stove')"
           data-image="https://i.postimg.cc/YCqvR7FT/cooktop-1.jpg"
         >
           <template v-slot:header>
@@ -64,6 +64,8 @@
 import { ref } from 'vue'
 import Card from '@/components/Card.vue'
 import StackedCards from '@/components/StackedCards.vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const menuOpen = ref(false)
 const toggleMenu = () => {
@@ -78,6 +80,9 @@ const toggleMenu = () => {
   } else {
     logoImage.style.display = 'block' // Always show logo on larger screens
   }
+}
+const categoryClick = (category) => {
+  router.push(`/recipes`)
 }
 </script>
 

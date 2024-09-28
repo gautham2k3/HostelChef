@@ -32,10 +32,13 @@
    <body>
       <ol class="filters">
          <li>
-            <label for="Fast">Fast</label>
+            <label @click="categoryClick('Kettle')" class="filtersK">Kettle</label>
          </li>
          <li>
-            <label for="Medium">Medium</label>
+            <label @click="categoryClick('Induction')" class="filtersI">Induction</label>
+         </li>
+         <li>
+            <label @click="categoryClick('X')" class="filtersX">X</label>
          </li>
       </ol>
       <div v-if="recipes.length" class="scroll-container">
@@ -95,6 +98,51 @@ const handleSearch = async () => {
     } catch (error) {
        console.error('Error Searching recipes:', error);
        recipes.value = [];
+   }
+};
+
+const categoryClick = async (category) => {
+   if(category=='Kettle') {
+      document.querySelectorAll('.filtersK').forEach(element => {
+         element.style.backgroundColor = '#ff6f61';
+      });
+      document.querySelectorAll('.filtersI').forEach(element => {
+         element.style.backgroundColor = '#fff';
+      });
+      document.querySelectorAll('.filtersX').forEach(element => {
+          element.style.backgroundColor = '#A9A9A9';
+      });
+   }
+   else {
+      document.querySelectorAll('.filtersI').forEach(element => {
+         element.style.backgroundColor = '#ff6f61';
+      });
+      document.querySelectorAll('.filtersK').forEach(element => {
+         element.style.backgroundColor = '#fff';
+      });
+      document.querySelectorAll('.filtersX').forEach(element => {
+          element.style.backgroundColor = '#A9A9A9';
+      });
+   }
+   if(category=='X') {
+      document.querySelectorAll('.filtersI').forEach(element => {
+         element.style.backgroundColor = '#fff';
+      });
+      document.querySelectorAll('.filtersK').forEach(element => {
+         element.style.backgroundColor = '#fff';
+      });
+      document.querySelectorAll('.filtersX').forEach(element => {
+          element.style.backgroundColor = '#fff';
+      });
+      recipes.value = latestRecipe.value;
+   } else {
+      try {
+         const response = await fetch(`${baseUrl}/recipe/search/${category}`);
+         const data = await response.json();
+         recipes.value = data; 
+      } catch (error) {
+         console.error('Error fetching recipes:', error);
+      }
    }
 };
 
@@ -165,13 +213,12 @@ html {
 }
 .scroll-container {
    margin-top:5%;
-   max-height: 500px;
+   width: 100%;
+   max-height: 100%;
    overflow-y:auto;
    display: flex;
    flex-wrap: wrap;
    gap: 16px;
-   scrollbar-width:auto;
-   scrollbar-color: #ff6f61 #f4f5f5;
 }
 
 body {
@@ -181,6 +228,8 @@ body {
    line-height: 1.5;
    color: var(--color-black-500);
    background-color: var(--color-white-100);
+   scrollbar-width:thin;
+   scrollbar-color: #ff6f61 #f4f5f5;
 }
 
 main {
