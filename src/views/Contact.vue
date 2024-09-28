@@ -10,7 +10,6 @@
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/recipes">Recipes</RouterLink>
         <RouterLink to="/contact">Contact</RouterLink>
-        <RouterLink to="/test">Test</RouterLink>
       </nav>
     </header>
     <div class="container">
