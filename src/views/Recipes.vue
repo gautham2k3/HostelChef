@@ -212,6 +212,8 @@ html {
    height: -webkit-fill-available;
 }
 .scroll-container {
+   align-items: center;
+   justify-content: center;
    margin-top:5%;
    width: 100%;
    max-height: 100%;
@@ -354,7 +356,6 @@ p {
 
    padding-top: 0.5rem;
 
-   // Responsive Media Query
    @media only screen and (min-width: 62rem) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       width: 100%;
@@ -558,7 +559,7 @@ p {
   }
 }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 568px) {
     .logo {
       flex-direction:column;
       align-items: flex-start;
@@ -589,7 +590,52 @@ p {
    .menu-open {
       display: flex;
    }
+   .filters {
+      margin-top: 22%;
+   }
+   .scroll-container {
+      margin-top: 1%;
+   }
    
+  }
+
+  @media screen and (max-width: 768px) {
+      .logo {
+         flex-direction:column;
+         align-items: flex-start;
+         padding: 20px;
+         height: auto;
+         left: 0;
+      }
+      .logo-image {
+         width: 60px;
+         height: 60px;
+         margin-right: 0;
+         position: absolute;
+         left: -20px;
+         margin-top: 4px;
+      }
+      .menu-toggle {
+         display: block;      
+      }
+      .menu {
+         display: flex;
+         flex-direction: column;
+         width: 100%;
+      }
+      .menu a {
+         margin: 10px 0;
+         padding: 10px 20px;
+      }
+      .menu-open {
+         display: flex;
+      }
+      .filters {
+         margin-top: 22%;
+      }
+      .scroll-container {
+         margin-top: 1%;
+      }
   }
 </style>
 
