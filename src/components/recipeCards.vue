@@ -1,6 +1,6 @@
 <template>
   <div class="recipe-card">
-    <div class="recipe-cover">
+    <div @click="openRecipe" class="recipe-cover">
       <img :src="image" :alt="title" />
     </div>
     <div class="recipe-info">
@@ -81,7 +81,7 @@ export default {
 <style scoped>
 .recipe-card {
   width: 280px;
-  height: 400px;
+  height: 370px;
   border-radius: 15px;
   overflow: hidden;
   background-color: #fff;
@@ -107,16 +107,20 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  cursor: pointer;
   object-position: center;
   transition: transform 0.3s ease;
 }
 
 .recipe-card:hover .recipe-cover img {
+  filter:brightness(0.8);
   transform: scale(1.05);
 }
 
 .recipe-card .recipe-info {
-  padding: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -124,7 +128,7 @@ export default {
 }
 
 .recipe-card .recipe-header {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .recipe-card .recipe-subtitle {
@@ -189,10 +193,10 @@ export default {
 } */
 
 .icon {
-  width: 20px; /* Adjust size as needed */
+  width: 20px; 
   height: 20px;
   margin-right: 6px;
-  vertical-align: middle; /* Aligns the icon with the text */
+  vertical-align: middle; 
 }
 
 
@@ -203,7 +207,7 @@ export default {
   background-color: #ff6347;
   color: #fff;
   border: none;
-  border-radius: 15px 0 0 0; /* Inverted border radius */
+  border-radius: 15px 0 0 0; 
   padding: 10px;
   font-size: 16px;
   cursor: pointer;
@@ -218,5 +222,19 @@ export default {
 
 .read-more-btn:focus {
   outline: none;
+}
+
+@media screen and (max-width: 768px) {
+  .recipe-card {
+    width: 100%;
+    height: auto;
+  }
+  .recipe-cover {
+    height: 50%;
+  }
+  .read-more-btn {
+    display: none;
+  }
+
 }
 </style>

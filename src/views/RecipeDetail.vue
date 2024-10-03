@@ -3,12 +3,11 @@
     <a href="#" class="logo">
       <img src="@/assets/logos/android-chrome-512x512.png" alt="Logo" class="logo-image" />
     </a>
-    <button class="menu-toggle" @click="toggleMenu">☰</button>
-    <nav :class="['navbar', { 'navbar-open': menuOpen }]">
+    <button class="menu-toggle" @click="toggleMenu">↩</button>
+    <nav :class="['navbar']">
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/recipes">Recipes</RouterLink>
       <RouterLink to="/contact">Contact</RouterLink>
-      <RouterLink to="/test">Test</RouterLink>
     </nav>
   </header>
   <div class="recipe-wrapper">
@@ -56,7 +55,7 @@ export default {
     };
   },
   mounted() {
-    const recipeId = this.$route.params.id; // Get the recipe ID from the route
+    const recipeId = this.$route.params.id; 
     fetch(`${baseUrl}/recipe/${recipeId}`)
       .then((response) => response.json())
       .then((data) => {
@@ -72,6 +71,9 @@ export default {
       for(let i = 0; i < this.recipe.tags.length; i++) {
         this.tags+="#"+String(this.recipe.tags[i])+"    ";
       }
+    },
+    toggleMenu() {
+      this.$router.push('/recipes');
     }
   }
 };
@@ -83,16 +85,16 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: 60px; /* Set a fixed height for the header */
-  padding: 0 50px; /* Adjust padding for left and right */
+  height: 60px; 
+  padding: 0 50px; 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ff6f61; /* Material design color */
+  background-color: #ff6f61; 
   color: #ffffff;
   z-index: 100;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  border-bottom: 2px solid #fff; /* White border at the bottom */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  border-bottom: 2px solid #fff; 
 }
 
 .logo {
@@ -101,17 +103,17 @@ export default {
   font-size: 24px;
   color: #fff;
   text-decoration: none;
-  font-weight: 500; /* Slightly lighter font weight */
-  position: relative; /* Added relative positioning */
+  font-weight: 500; 
+  position: relative; 
 }
 
 .logo-image {
-  width: 120px; /* Increased the size */
-  height: 120px; /* Increased the size */
+  width: 120px; 
+  height: 120px; 
   border-radius: 50%;
-  margin-right: 10px; /* Space between image and text */
-  position: absolute; /* Positioned absolutely within the logo container */
-  top: -10px; /* Adjusted to pop off the header */
+  margin-right: 10px; 
+  position: absolute; 
+  top: -10px; 
   border: 2px solid #5d4037;
 }
 
@@ -126,7 +128,7 @@ export default {
 
 .navbar {
   display: flex;
-  margin-left: auto; /* Ensure the navigation stays on the right in larger screens */
+  margin-left: auto; 
 }
 
 .navbar a {
@@ -286,10 +288,75 @@ ul li, ol li {
   .recipeKey span {
     font-size: 0.9rem;
   }
-
+  .logo-image {
+    width: 80px;
+    height: 80px;
+  }
+  .header {
+    padding: 0 20px;
+  }
+  .menu-toggle {
+    display: block;
+  }
+  .navbar {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+  .logo-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 0;
+    position: absolute;
+    left: 0px;
+  }
+  .footer-menu {
+    flex-direction: column;
+  }
+  .footer-menu li {
+    margin: 10px 0;
+  }
+  .recipe-wrapper {
+    padding: 10px;
+  } 
+  .left {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .right {
+    width: 100%;
+    margin-left: 0;
+    padding: 10px;
+    flex: 1;
+    overflow-y: auto;
+    height: auto;
+  }
+  .tags-span {
+    font-size: 0.8rem;
+  }
+  .pol {
+    padding: 0.5rem;
+  }
+  .caption {
+    margin-top: 5px;
+    font-size: 0.8rem;
+  }
+  .des {
+    padding: 10px;
+  }
+  .recipeKey {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+  .recipeKey span {
+    font-size: 1rem;
+  }
   h2 {
     font-size: 1rem;
   }
 }
+
 
 </style>
