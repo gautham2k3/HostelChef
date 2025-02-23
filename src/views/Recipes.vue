@@ -52,6 +52,7 @@
         :servings="2"  
         :calories="recipe.difficulty.toUpperCase()"
         :description="recipe.description"
+        :url="`/recipes/${recipe._id}`"
         :recipeID="recipe._id"
       />
     </div>

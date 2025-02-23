@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import { RouterLink } from 'vue-router';
 export default {
   props: {
     image: {
@@ -45,11 +44,11 @@ export default {
       required: true,
     },
     time: {
-      type: String,
+      type: [String, Number],
       required: true,
     },
     servings: {
-      type: String,
+      type: [String, Number],
       required: true,
     },
     calories: {
