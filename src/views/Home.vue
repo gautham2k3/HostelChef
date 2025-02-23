@@ -52,8 +52,6 @@
     <footer class="footer">
       <p>&copy; 2024 Hostel Chef. All rights reserved.</p>
       <ul class="footer-menu">
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
         <RouterLink to="/contact">Contact</RouterLink>
       </ul>
     </footer>

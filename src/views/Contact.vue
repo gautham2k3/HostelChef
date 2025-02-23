@@ -12,46 +12,38 @@
         <RouterLink to="/contact">Contact</RouterLink>
       </nav>
     </header>
-    <div class="container">
-      <form id="contact" method="post" action="contact.php">
-        <h3>Contact Form</h3>
-        <h4>Enter your Information</h4>
-        <fieldset>
-          <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" tabindex="1" required autofocus>
-        </fieldset>
-        <fieldset>
-          <input name="email" type="email" class="form-control" id="email" placeholder="Your Email" tabindex="2" required>
-        </fieldset>
-        <fieldset>
-          <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject" tabindex="3" required>
-        </fieldset>
-        <fieldset>
-          <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your Message" tabindex="4" required></textarea>
-        </fieldset>
-        <fieldset>
-          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-        </fieldset>
-      </form>
+    <div class="card">
+      <img src="https://avatars.githubusercontent.com/u/112716884?v=4" alt="Avatar" />
+      <h1>Gautham</h1>
+      <p>Full Stack Developer</p>
+      <div class="social-links">
+        <a href="https://github.com/gautham2k3" target="_blank" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2c-5.5 0-10 4.5-10 10 0 4.4 2.9 8.1 6.9 9.4.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.4-.9-1-1.2-1-1.2-.8-.5.1-.5.1-.5.9.1 1.3 1 1.3 1 .8 1.4 2.2.9 2.7.7.1-.6.3-1 .5-1.2-2.3-.3-4.7-1.2-4.7-5 0-1 .4-1.8 1-2.5-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.6 1 .8-.2 1.7-.4 2.6-.4s1.8.1 2.6.4c1.8-1.3 2.6-1 2.6-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.5 1 2.5 0 3.8-2.5 4.7-4.8 5 .3.3.6.8.6 1.5v2.5c0 .3.2.6.7.5 4-1.3 6.9-5 6.9-9.4 0-5.5-4.5-10-10-10z"></path>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/gautham-naidu/" target="_blank" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 0h-14c-2.8 0-5 2.2-5 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5v-14c0-2.8-2.2-5-5-5zm-11.5 19h-3v-9h3v9zm-1.5-10.2c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zm13 10.2h-3v-4.5c0-1-.4-1.5-1.3-1.5s-1.4.7-1.4 1.5v4.5h-3v-9h3v1.3c.6-.9 1.6-1.3 2.6-1.3 2 0 3.2 1.3 3.2 3.7v5.3z"></path>
+          </svg>
+        </a>
+        <a href="https://x.com/gautham2k3" target="_blank" title="Twitter">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M24 4.6c-.9.4-1.8.6-2.8.8 1-.6 1.8-1.6 2.2-2.7-.9.6-2 .9-3 1.2-.9-.9-2.1-1.5-3.5-1.5-2.6 0-4.6 2.1-4.6 4.6 0 .4 0 .9.1 1.3-3.8-.1-7.2-2-9.4-4.8-.4.6-.5 1.4-.5 2.2 0 1.6.8 3 2.1 3.8-.8 0-1.5-.3-2-.6v.1c0 2.3 1.6 4.2 3.8 4.6-.3.1-.7.1-1 .1-.3 0-.5 0-.8-.1.5 1.7 2 2.9 3.8 2.9-1.4 1.1-3.2 1.8-5.1 1.8-.3 0-.6 0-.8-.1 1.8 1.2 3.8 1.8 6 1.8 7.2 0 11.2-6 11.2-11.2v-.5c.8-.6 1.6-1.3 2.2-2.1z"></path>
+          </svg>
+        </a>
+      </div>
     </div>
-    <footer class="footer">
-      <p>&copy; 2024 Dorm Cooking. All rights reserved.</p>
-      <ul class="footer-menu">
-        <li><RouterLink to="/">Home</RouterLink></li>
-        <li><RouterLink to="/recipies">Recipes</RouterLink></li>
-        <li><RouterLink to="/terms">Terms of Service</RouterLink></li>
-        <li><RouterLink to="/contact">Contact</RouterLink></li>
-      </ul>
-    </footer>
   </div>
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router';
-  const menuOpen = ref(false)
-  const toggleMenu = () => {
-    menuOpen.value = !menuOpen.value
-  }
+const menuOpen = ref(false)
+const toggleMenu = () => {
+  menuOpen.value = !menuOpen.value
+}
 </script>
   
 <style scoped>
@@ -124,104 +116,76 @@ import { RouterLink } from 'vue-router';
   background-color: rgba(255, 255, 255, 0.1);
   color: #ffdab9;
 }
-
-.container {
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-  margin-top: 100px; /* Adjusted margin to avoid overlapping with the fixed header */
-}
-
-#contact input[type="text"],
-#contact input[type="email"],
-#contact input[type="tel"],
-#contact input[type="url"],
-#contact textarea,
-#contact {
-  background: #F9F9F9;
-  padding: 25px;
-  margin: 150px 0;
-  color: #ff6f61;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-
-#contact h3 {
-  display: block;
-  font-size: 30px;
-  font-weight: 300;
-  margin-bottom: 10px;
-  font-family: 'Poppins', sans-serif;
+.card {
+  background: linear-gradient(145deg, #1e293b, #374151);
+  border-radius: 20px;
+  padding: 30px;
+  width: 300px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
   text-align: center;
+  color: #f8fafc;
+  margin: 0 auto; 
 }
 
-#contact h4 {
-  margin: 5px 0 15px;
-  display: block;
-  font-size: 12px;
-  font-weight: 300;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-#contact input[type="text"],
-#contact input[type="email"],
-#contact input[type="tel"],
-#contact input[type="url"],
-#contact textarea {
-  width: 100%;
-  border: 1px solid #ccc;
-  background: #FFF;
-  margin: 0 0 5px;
-  padding: 10px;
-}
-
-#contact input[type="text"]:hover,
-#contact input[type="email"]:hover,
-#contact input[type="tel"]:hover,
-#contact input[type="url"]:hover,
-#contact textarea:hover {
-  -webkit-transition: border-color 0.3s ease-in-out;
-  -moz-transition: border-color 0.3s ease-in-out;
-  transition: border-color 0.3s ease-in-out;
-  border: 1px solid #aaa;
-}
-
-#contact textarea {
+.card img {
+  width: 100px;
   height: 100px;
-  max-width: 100%;
-  resize: none;
+  border-radius: 50%;
+  border: 4px solid #ff6f61; /* Match the header color */
+  margin-bottom: 15px;
 }
 
-#contact button[type="submit"] {
-  cursor: pointer;
-  width: 100%;
-  border: none;
-  background: #ff6f61;
-  color: #FFF;
-  margin: 0 0 5px;
+.card h1 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #cbd5e1;
+}
+
+.card p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-links a {
+  text-decoration: none;
+  color: #ff6f61; /* Match the header color */
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #ffdab9; /* Match the hover color of navbar links */
+}
+
+.social-links a svg {
+  width: 24px;
+  height: 24px;
+}
+
+.additional-links {
+  margin-top: 20px;
+}
+
+.card-link {
+  display: block;
+  margin: 10px 0;
   padding: 10px;
-  font-size: 15px;
+  background-color: #ff6f61;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-#contact button[type="submit"]:hover {
-  background: #43A047;
-  -webkit-transition: background 0.3s ease-in-out;
-  -moz-transition: background 0.3s ease-in-out;
-  transition: background-color 0.3s ease-in-out;
-}
-
-fieldset {
-  border: medium none !important;
-  margin: 0 0 10px;
-  min-width: 100%;
-  padding: 0;
-  width: 100%;
-}
-
-#contact textarea:focus {
-  outline: 0;
-  border: 1px solid #aaa;
+.card-link:hover {
+  background-color: #ffdab9;
 }
 
 .footer {
@@ -294,14 +258,6 @@ fieldset {
       margin-right: 0;
       position: absolute;
       left: 50px;
-  }
-
-  .footer-menu {
-    flex-direction: column;
-  }
-
-  .footer-menu li {
-    margin: 10px 0;
   }
 }
 </style>
